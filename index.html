@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIN · 自我介紹</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --midnight: #0a1128;      /* 深夜藍 */
+      --midnight-deep: #050916;
+      --navy-velvet: #111b3a;   /* 天鵝絨藏青 */
+      --ivory: #f2ecdf;         /* 象牙星白 */
+      --ivory-dim: #d8d0bf;
+      --gold: #b8975a;          /* 古董金 */
+      --gold-light: #d9bf85;
+      --muted: #8e8a7e;
+      --line: rgba(184, 151, 90, 0.55);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { background: var(--midnight-deep); }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+      overflow-x: hidden;
+      font-family: "Noto Serif TC", serif;
+      color: var(--ivory);
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(184, 151, 90, 0.10), transparent 70%),
+        radial-gradient(ellipse 120% 90% at 50% 50%, var(--midnight) 0%, var(--midnight-deep) 80%);
+      background-attachment: fixed;
+    }
+
+    /* ── 星空層：克制、安靜 ───────────────── */
+    .sky {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--ivory);
+      opacity: var(--o, 0.6);
+      animation: twinkle var(--d, 6s) ease-in-out var(--delay, 0s) infinite;
+    }
+    .star.gold { background: var(--gold-light); }
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--o, 0.6); }
+      50%      { opacity: 0.12; }
+    }
+
+    /* 背景淡淡的天體儀圓環 */
+    .sky::before,
+    .sky::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 151, 90, 0.08);
+      transform: translate(-50%, -50%);
+    }
+    .sky::before { width: 820px; height: 820px; }
+    .sky::after  { width: 1100px; height: 1100px; border-style: dashed; border-color: rgba(184, 151, 90, 0.05); }
+
+    /* ── 卡片：藏青天鵝絨 + 雙金框 ───────────── */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 520px;
+      padding: 68px 52px 60px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, rgba(217, 191, 133, 0.08), transparent 60%),
+        linear-gradient(180deg, var(--navy-velvet) 0%, #0b1330 100%);
+      border: 1px solid var(--gold);
+      box-shadow:
+        0 0 0 6px var(--midnight-deep),
+        0 0 0 7px rgba(184, 151, 90, 0.35),
+        0 40px 80px rgba(0, 0, 0, 0.6);
+      animation: rise 1.4s cubic-bezier(.2, .7, .2, 1) both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* 內框細金線 */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(184, 151, 90, 0.4);
+      pointer-events: none;
+    }
+
+    /* 四角金色星飾 */
+    .corner {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      color: var(--gold);
+      font-size: 11px;
+      line-height: 14px;
+      text-align: center;
+      background: var(--navy-velvet);
+    }
+    .corner.tl { top: 7px; left: 7px; }
+    .corner.tr { top: 7px; right: 7px; }
+    .corner.bl { bottom: 7px; left: 7px; background: #0b1330; }
+    .corner.br { bottom: 7px; right: 7px; background: #0b1330; }
+
+    /* 徽章式 monogram：雙金環 + 刻度 */
+    .monogram {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 30px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 34px;
+      color: var(--gold-light);
+      background: radial-gradient(circle, rgba(217, 191, 133, 0.08), transparent 70%);
+    }
+    .monogram::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 151, 90, 0.45);
+    }
+    /* 天體儀刻度環，極慢旋轉 */
+    .monogram::after {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border-radius: 50%;
+      background: repeating-conic-gradient(
+        rgba(184, 151, 90, 0.55) 0deg 1deg,
+        transparent 1deg 15deg
+      );
+      -webkit-mask: radial-gradient(circle, transparent 46px, #000 47px);
+              mask: radial-gradient(circle, transparent 46px, #000 47px);
+      animation: orbit 120s linear infinite;
+    }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+
+    .eyebrow {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 13px;
+      letter-spacing: 0.45em;
+      padding-left: 0.45em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 64px;
+      letter-spacing: 0.2em;
+      padding-left: 0.2em; /* 平衡字距 */
+      line-height: 1.1;
+      color: var(--ivory);
+      text-shadow: 0 0 24px rgba(242, 236, 223, 0.15);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 34px auto;
+      color: var(--gold);
+    }
+    .divider span {
+      width: 64px;
+      height: 1px;
+    }
+    .divider span:first-child { background: linear-gradient(90deg, transparent, var(--gold)); }
+    .divider span:last-child  { background: linear-gradient(90deg, var(--gold), transparent); }
+    .divider i {
+      font-style: normal;
+      font-size: 10px;
+    }
+
+    .row {
+      margin-bottom: 28px;
+    }
+    .label {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .value {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ivory);
+      letter-spacing: 0.15em;
+      padding-left: 0.15em;
+    }
+
+    blockquote {
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(184, 151, 90, 0.3);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      color: var(--gold-light);
+    }
+    blockquote::before,
+    blockquote::after {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold);
+      font-size: 28px;
+      vertical-align: -4px;
+    }
+    blockquote::before { content: "“"; margin-right: 6px; }
+    blockquote::after  { content: "”"; margin-left: 2px; }
+
+    footer {
+      margin-top: 40px;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 56px 30px 48px; }
+      h1 { font-size: 48px; }
+      blockquote { font-size: 19px; letter-spacing: 0.18em; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .star, .card, .monogram::after { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+
+  <main class="card">
+    <span class="corner tl" aria-hidden="true">✦</span>
+    <span class="corner tr" aria-hidden="true">✦</span>
+    <span class="corner bl" aria-hidden="true">✦</span>
+    <span class="corner br" aria-hidden="true">✦</span>
+
+    <div class="monogram">L</div>
+    <p class="eyebrow">About Me</p>
+    <h1>LIN</h1>
+
+    <div class="divider"><span></span><i>◆</i><span></span></div>
+
+    <section class="row">
+      <p class="label">興 趣</p>
+      <p class="value">學習</p>
+    </section>
+
+    <blockquote>越活越優秀</blockquote>
+
+    <footer>Est. with grace</footer>
+  </main>
+
+  <script>
+    // 隨機生成星星（少量、安靜，偶有金色星點）
+    (function () {
+      var sky = document.querySelector('.sky');
+      var count = Math.round((window.innerWidth * window.innerHeight) / 7000);
+      count = Math.max(60, Math.min(count, 180));
+      var frag = document.createDocumentFragment();
+      for (var i = 0; i < count; i++) {
+        var s = document.createElement('span');
+        var size = Math.random() > 0.9 ? 2 : 1;
+        s.className = 'star' + (Math.random() > 0.85 ? ' gold' : '');
+        s.style.width = s.style.height = size + 'px';
+        s.style.left = (Math.random() * 100) + '%';
+        s.style.top = (Math.random() * 100) + '%';
+        s.style.setProperty('--o', (0.3 + Math.random() * 0.5).toFixed(2));
+        s.style.setProperty('--d', (4 + Math.random() * 6).toFixed(1) + 's');
+        s.style.setProperty('--delay', (-Math.random() * 8).toFixed(1) + 's');
+        frag.appendChild(s);
+      }
+      sky.appendChild(frag);
+    })();
+  </script>
+</body>
+</html>
